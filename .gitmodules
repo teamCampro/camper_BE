@@ -1,0 +1,3 @@
+[submodule "campro_BE_sub"]
+	path = campro_BE_sub
+	url = https://github.com/teamCampro/campro_BE_sub.git
