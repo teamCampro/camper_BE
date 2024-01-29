@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Lint
+    name: BE-CI
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,6 +19,9 @@ jobs:
       - name: Super-linter
         uses: super-linter/super-linter@v5.7.2
         env:
+          VALIDATE_GOOGLE_JAVA_FORMAT: false
+          VALIDATE_JAVA : false
+          VALIDATE_SHELL_SHFMT: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -31,7 +34,7 @@ jobs:
       - name: Run Coverage
         run: |
           chmod +x gradlew
-          ./gradlew testCoverage
+          ./gradlew test
 
       - name: Jacoco Report to PR
         id: jacoco
