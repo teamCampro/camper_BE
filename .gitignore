@@ -213,4 +213,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-*.yml
+# yml
+application*.yml
