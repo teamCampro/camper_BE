@@ -32,7 +32,9 @@ dependencies {
     // Spring Web 기본 의존성
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+    // Spring Security 의존성 추가
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
     // API 문서화를 위한 swagger 의존성 추가
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
     // Spring Data JPA 의존성 추가
