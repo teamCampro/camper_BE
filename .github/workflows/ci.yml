@@ -1,0 +1,49 @@
+name: BE-CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+permissions: write-all
+
+jobs:
+  build:
+    name: BE-CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Super-linter
+        uses: super-linter/super-linter@v5.7.2
+        env:
+          VALIDATE_GOOGLE_JAVA_FORMAT: false
+          VALIDATE_JAVA : false
+          VALIDATE_SHELL_SHFMT: false
+          VALIDATE_DOCKERFILE_HADOLINT: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Run Coverage
+        run: |
+          chmod +x gradlew
+          ./gradlew test
+
+      - name: Jacoco Report to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.6.1
+        with:
+          paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Code Coverage
+          min-coverage-overall: 60
+          min-coverage-changed-files: 60
+          update-comment: true

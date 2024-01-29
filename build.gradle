@@ -2,10 +2,23 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.2'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'jacoco'
 }
 
 group = 'com.campro'
 version = '0.0.1-SNAPSHOT'
+
+jacoco {
+    toolVersion = '0.8.11'
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}
 
 java {
     sourceCompatibility = '17'
@@ -16,26 +29,39 @@ repositories {
 }
 
 dependencies {
+    // Spring Web 기본 의존성
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-
-    //swagger
+    // API 문서화를 위한 swagger 의존성 추가
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
-
-    //DB
+    // Spring Data JPA 의존성 추가
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // Postgresql 의존성 추가
     implementation 'org.postgresql:postgresql:42.6.0'
+
+    // 테스트에서 사용할 H2 DB 의존성 추가
+    runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
-task copyPrivate(type: Copy) {
+// Gradle build 시 submodule 에서 application.yml 파일 복사를 위한 task 추가
+tasks.register('copyYml', Copy) {
     copy {
         from './campro_BE_sub'
-        include "*.yml"
+        include "application.yml"
         into 'src/main/resources'
     }
+}
+
+// Gradle build 시 copyYml task 가 동작하도록 추가
+build.dependsOn(copyYml)
+
+// Gradle clean 시 copy 한 application.yml 삭제를 위한 delete 추가
+clean {
+    delete file('src/main/resources/application.yml')
 }
