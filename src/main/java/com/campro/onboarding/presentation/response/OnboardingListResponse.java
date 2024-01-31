@@ -4,8 +4,9 @@ import com.campro.onboarding.infrastructure.entity.OnboardingEntity;
 
 import java.util.List;
 
-public class OnboardingListResponse {
-
-    private List<OnboardingEntity> list;
+public record OnboardingListResponse(List<OnboardingEntity> list) {
+    public static OnboardingListResponse from(List<OnboardingEntity> temp){
+        return new OnboardingListResponse(temp);
+    }
 
 }
