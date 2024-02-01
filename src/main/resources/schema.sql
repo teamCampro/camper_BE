@@ -14,17 +14,6 @@ CREATE TABLE IF NOT EXISTS keyword (
     text VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS member (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(255),
-    password INTEGER,
-    image VARCHAR(255),
-    nickname VARCHAR(255),
-    type VARCHAR(255),
-    enroll_date DATE,
-    update_date DATE
-);
-
 
 TRUNCATE TABLE onboarding RESTART IDENTITY;
 TRUNCATE TABLE choice RESTART IDENTITY;
