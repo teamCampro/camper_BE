@@ -17,15 +17,13 @@ public class OnboardingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long board_id;
 
-    @Column
     private String question;
 
 
 
-    @OneToMany(mappedBy = "onboarding", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "onboarding")
     private List<ChoiceEntity> choices;
 
 

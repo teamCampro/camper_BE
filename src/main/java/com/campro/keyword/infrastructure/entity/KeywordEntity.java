@@ -11,10 +11,8 @@ public class KeywordEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Long id;
 
-    @Column
     private String text;
 
 
