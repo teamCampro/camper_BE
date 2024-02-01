@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OnboardingListDTO {
-    private Long borad_id;
-    private String question;
+    private final Long borad_id;
+    private final String question;
 
-    private List<ChoiceListDTO> choices;
+    private final List<ChoiceListDTO> choices;
 
     public OnboardingListDTO(Long borad_id, String question, List<ChoiceListDTO> choices) {
         this.borad_id = borad_id;

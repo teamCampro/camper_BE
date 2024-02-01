@@ -4,9 +4,9 @@ import com.campro.onboarding.infrastructure.entity.ChoiceEntity;
 
 
 public class ChoiceListDTO {
-    private Long id;
+    private final Long id;
 
-    private String text;
+    private final String text;
 
     public ChoiceListDTO(Long id, String text) {
         this.id = id;
