@@ -1,28 +1,28 @@
 CREATE TABLE IF NOT EXISTS onboarding (
     board_id SERIAL PRIMARY KEY,
-    question varchar(255)
+    question VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS choice (
     id SERIAL PRIMARY KEY,
-    board_id integer,
-    text varchar(255)
+    board_id INTEGER,
+    text VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS keyword (
     id SERIAL PRIMARY KEY,
-    text varchar(255)
+    text VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS member (
     id SERIAL PRIMARY KEY,
-    email varchar(255),
-    password integer,
-    image varchar(255),
-    nickname varchar(255),
-    type varchar(255),
-    enroll_date date,
-    update_date date
+    email VARCHAR(255),
+    password INTEGER,
+    image VARCHAR(255),
+    nickname VARCHAR(255),
+    type VARCHAR(255),
+    enroll_date DATE,
+    update_date DATE
 );
 
 
