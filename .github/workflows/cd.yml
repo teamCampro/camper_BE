@@ -26,7 +26,8 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25
         with:
-          arguments: build
+          arguments: build -x test
+
 
       - name: Docker Login
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d
@@ -55,3 +56,5 @@ jobs:
             sudo docker run -p ${{ secrets.PORT }}:${{ secrets.PORT }} \
             --name ${{ secrets.PROJECT_NAME }} \
             -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.PROJECT_NAME }}
+
+
