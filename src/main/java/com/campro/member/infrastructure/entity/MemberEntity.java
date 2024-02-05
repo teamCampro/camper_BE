@@ -12,10 +12,10 @@ public class MemberEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String email;
     String nickname;
-    String profileImage;
+    String email;
     String password;
+    String profileImage;
 
     @Enumerated(EnumType.STRING)
     Rule rule;
@@ -46,9 +46,9 @@ public class MemberEntity {
     public static Member toModel(MemberEntity memberEntity) {
         return new Member(
                 memberEntity.id,
+                memberEntity.nickname,
                 memberEntity.email,
                 memberEntity.password,
-                memberEntity.nickname,
                 memberEntity.profileImage,
                 memberEntity.rule
         );
