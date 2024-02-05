@@ -8,6 +8,9 @@ import com.campro.member.domain.Member;
 import com.campro.member.infrastructure.MemberRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.Optional;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 
@@ -26,20 +29,18 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberSignupResponse signup(MemberSignupRequest memberSignupRequest) {
+        String nickname = memberSignupRequest.nickname();
         String email = memberSignupRequest.email();
+
+        verifyDuplicateNickname(nickname);
         verifyDuplicateEmail(email);
-        verifyDuplicateNickname(memberSignupRequest.nickname());
 
         String encryptedEmail = encryptService.recoverableEncryptData(email);
         String encryptedPassword = encryptService.unrecoverableEncryptData(memberSignupRequest.password());
-        Member member = Member.from(encryptedPassword, encryptedEmail);
+        Member member = Member.from(nickname, encryptedEmail, encryptedPassword);
 
         memberRepository.save(member);
-
-        String accessToken = authTokenService.generateAccessToken(email);
-        String refreshToken = authTokenService.generateRefreshToken(email);
-
-        return new MemberSignupResponse(email, accessToken, refreshToken);
+        return MemberSignupResponse.from(member.nickname());
     }
 
     private void verifyDuplicateEmail(String email) {

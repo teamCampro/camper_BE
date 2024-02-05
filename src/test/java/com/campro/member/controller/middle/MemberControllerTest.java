@@ -44,7 +44,7 @@ class MemberControllerTest {
         void 정상적인_회원가입_요청_테스트() throws Exception {
             // given
             MemberSignupRequest memberSignupRequest = new MemberSignupRequest("test123@test.com", "testNickname", "test123");
-            MemberSignupResponse memberSignupResponse = new MemberSignupResponse("test123@test.com", "testAccess", "testRefresh");
+            MemberSignupResponse memberSignupResponse = new MemberSignupResponse("testNickname");
             BDDMockito.given(memberService.signup(memberSignupRequest))
                     .willReturn(memberSignupResponse);
 

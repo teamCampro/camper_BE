@@ -23,22 +23,22 @@ public class MemberEntity {
     protected MemberEntity() {
     }
 
-    private MemberEntity(Long id, String email, String nickname, String profileImage, String password, Rule rule) {
+    private MemberEntity(Long id, String nickname, String email, String password, String profileImage, Rule rule) {
         this.id = id;
-        this.email = email;
         this.nickname = nickname;
-        this.profileImage = profileImage;
+        this.email = email;
         this.password = password;
+        this.profileImage = profileImage;
         this.rule = rule;
     }
 
     public static MemberEntity fromModel(Member member) {
         return new MemberEntity(
                 member.id(),
-                member.email(),
                 member.nickname(),
-                member.profileImage(),
+                member.email(),
                 member.password(),
+                member.profileImage(),
                 member.rule()
         );
     }

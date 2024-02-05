@@ -8,9 +8,9 @@ public record Member(Long id, String nickname, String email, String password, St
     public static Member from(String nickname, String email, String password) {
         return new Member(
                 null,
+                nickname,
                 email,
                 password,
-                nickname,
                 DEFAULT_PROFILE_IMAGE,
                 Rule.USER
         );
