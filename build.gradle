@@ -60,6 +60,14 @@ tasks.register('copyYml', Copy) {
         into 'src/main/resources'
     }
 }
+// test resources도 application.yml 복사.
+tasks.register('copyYml', Copy) {
+    copy {
+        from './campro_BE_sub/resources'
+        include "application.yml"
+        into 'src/test/resources'
+    }
+}
 
 // Gradle build 시 copyYml task 가 동작하도록 추가
 build.dependsOn(copyYml)
