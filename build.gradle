@@ -61,7 +61,7 @@ tasks.register('copyYml', Copy) {
     }
 }
 // test resources도 application.yml 복사.
-tasks.register('copyYml', Copy) {
+tasks.register('copyTestYml', Copy) {
     copy {
         from './campro_BE_sub/resources'
         include "application.yml"
