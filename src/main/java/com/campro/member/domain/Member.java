@@ -1,6 +1,6 @@
 package com.campro.member.domain;
 
-public record Member(Long id, String nickname, String email, String password, String profileImage, Rule rule) {
+public record Member(Long id, String nickname, String email, String password, String profileImage, Role role) {
 
     // S3 연동 후 수정 필요
     private static final String DEFAULT_PROFILE_IMAGE = "default.png";
@@ -12,7 +12,7 @@ public record Member(Long id, String nickname, String email, String password, St
                 email,
                 password,
                 DEFAULT_PROFILE_IMAGE,
-                Rule.USER
+                Role.USER
         );
     }
 }

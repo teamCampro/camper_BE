@@ -1,12 +1,13 @@
 package com.campro.member.infrastructure.entity;
 
+import com.campro.common.infrastructure.entity.BaseTimeEntity;
 import com.campro.member.domain.Member;
-import com.campro.member.domain.Rule;
+import com.campro.member.domain.Role;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "member")
-public class MemberEntity {
+public class MemberEntity extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,18 +19,18 @@ public class MemberEntity {
     String profileImage;
 
     @Enumerated(EnumType.STRING)
-    Rule rule;
+    Role role;
 
     protected MemberEntity() {
     }
 
-    private MemberEntity(Long id, String nickname, String email, String password, String profileImage, Rule rule) {
+    private MemberEntity(Long id, String nickname, String email, String password, String profileImage, Role role) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
         this.password = password;
         this.profileImage = profileImage;
-        this.rule = rule;
+        this.role = role;
     }
 
     public static MemberEntity fromModel(Member member) {
@@ -39,7 +40,7 @@ public class MemberEntity {
                 member.email(),
                 member.password(),
                 member.profileImage(),
-                member.rule()
+                member.role()
         );
     }
 
@@ -50,7 +51,7 @@ public class MemberEntity {
                 memberEntity.email,
                 memberEntity.password,
                 memberEntity.profileImage,
-                memberEntity.rule
+                memberEntity.role
         );
     }
 }
