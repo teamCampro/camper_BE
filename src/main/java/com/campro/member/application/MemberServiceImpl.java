@@ -1,6 +1,5 @@
 package com.campro.member.application;
 
-import com.campro.auth.application.AuthTokenService;
 import com.campro.encrypt.application.service.EncryptService;
 import com.campro.member.application.request.MemberSignupRequest;
 import com.campro.member.presentation.controller.response.MemberSignupResponse;
@@ -8,22 +7,16 @@ import com.campro.member.domain.Member;
 import com.campro.member.infrastructure.MemberRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.Optional;
-
 @Service
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
-    private final AuthTokenService authTokenService;
     private final EncryptService encryptService;
 
     public MemberServiceImpl(MemberRepository memberRepository,
-                             AuthTokenService authTokenService,
                              EncryptService encryptService
     ) {
         this.memberRepository = memberRepository;
-        this.authTokenService = authTokenService;
         this.encryptService = encryptService;
     }
 
@@ -35,9 +28,8 @@ public class MemberServiceImpl implements MemberService {
         verifyDuplicateNickname(nickname);
         verifyDuplicateEmail(email);
 
-        String encryptedEmail = encryptService.recoverableEncryptData(email);
         String encryptedPassword = encryptService.unrecoverableEncryptData(memberSignupRequest.password());
-        Member member = Member.from(nickname, encryptedEmail, encryptedPassword);
+        Member member = Member.from(nickname, email, encryptedPassword);
 
         memberRepository.save(member);
         return MemberSignupResponse.from(member.nickname());
