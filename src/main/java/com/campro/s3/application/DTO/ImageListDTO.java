@@ -4,26 +4,20 @@ import java.util.Date;
 
 public class ImageListDTO {
 
-    private final String originFileName ;
-    private final String uploadFileName;
+    private final String originName ;
+    private final String uploadUrl;
 
-    private final Date enroll_date;
 
-    public ImageListDTO(String originFileName, String uploadFileName, Date enroll_date) {
-        this.originFileName = originFileName;
-        this.uploadFileName = uploadFileName;
-        this.enroll_date = enroll_date;
+    public ImageListDTO(String originName, String uploadUrl) {
+        this.originName = originName;
+        this.uploadUrl = uploadUrl;
     }
 
-    public String getOriginFileName() {
-        return originFileName;
+    public String getOriginName() {
+        return originName;
     }
 
-    public String getUploadFileName() {
-        return uploadFileName;
-    }
-
-    public Date getEnroll_date() {
-        return enroll_date;
+    public String getUploadUrl() {
+        return uploadUrl;
     }
 }
