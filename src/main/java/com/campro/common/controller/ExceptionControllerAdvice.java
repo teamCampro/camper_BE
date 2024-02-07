@@ -1,15 +1,21 @@
 package com.campro.common.controller;
 
-import com.campro.common.controller.exception.ApiException;
-import com.campro.common.controller.exception.ErrorCode;
+import com.campro.common.exception.ApiException;
+import com.campro.common.exception.ErrorCode;
 import com.campro.common.controller.response.ApiResponse;
 import jakarta.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @ControllerAdvice
 public class ExceptionControllerAdvice {
@@ -60,4 +66,22 @@ public class ExceptionControllerAdvice {
         );
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+        log.info("Method argument not valid: message: {} exception: ", exception.getMessage(), exception);
+        List<FieldError> fieldErrors = exception.getFieldErrors();
+        Map<String, String> response = new HashMap<>();
+
+        fieldErrors.forEach(fieldError ->
+                response.put(fieldError.getField(), fieldError.getDefaultMessage())
+        );
+
+        return ResponseEntity.ok().body(
+                ApiResponse.from(
+                        ErrorCode.METHOD_ARGUMENT_NOT_VALID.getCode(),
+                        ErrorCode.METHOD_ARGUMENT_NOT_VALID.getMessage(),
+                        response
+                )
+        );
+    }
 }
