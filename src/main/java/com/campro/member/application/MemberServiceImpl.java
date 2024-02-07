@@ -1,5 +1,7 @@
 package com.campro.member.application;
 
+import com.campro.common.exception.ApiException;
+import com.campro.common.exception.ErrorCode;
 import com.campro.encrypt.application.service.EncryptService;
 import com.campro.member.application.request.MemberSignupRequest;
 import com.campro.member.presentation.controller.response.MemberSignupResponse;
@@ -37,15 +39,19 @@ public class MemberServiceImpl implements MemberService {
 
     private void verifyDuplicateEmail(String email) {
         if (isEmailExist(email)) {
-            // common 병합 후 리펙터링 진행 예정
-            throw new RuntimeException("Email already exists");
+            throw new ApiException(
+                    ErrorCode.SIGNUP_FAIL_BY_DUPLICATE_EMAIL.getCode(),
+                    ErrorCode.SIGNUP_FAIL_BY_DUPLICATE_EMAIL.getMessage()
+            );
         }
     }
 
     private void verifyDuplicateNickname(String nickname) {
         if (isNicknameExist(nickname)) {
-            // common 병합 후 리펙터링 진행 예정
-            throw new RuntimeException("Nickname already exists");
+            throw new ApiException(
+                    ErrorCode.SIGNUP_FAIL_BY_DUPLICATE_NICKNAME.getCode(),
+                    ErrorCode.SIGNUP_FAIL_BY_DUPLICATE_NICKNAME.getMessage()
+            );
         }
     }
 
