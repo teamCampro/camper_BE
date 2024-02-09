@@ -44,6 +44,9 @@ dependencies {
 
     // 테스트에서 사용할 H2 DB 의존성 추가
     runtimeOnly 'com.h2database:h2'
+
+    // aws image
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 
 tasks.named('test') {

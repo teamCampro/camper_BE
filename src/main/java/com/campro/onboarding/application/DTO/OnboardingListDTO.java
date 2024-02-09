@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OnboardingListDTO {
-    private final Long borad_id;
+    private final Long board_id;
     private final String question;
 
     private final List<ChoiceListDTO> choices;
 
-    public OnboardingListDTO(Long borad_id, String question, List<ChoiceListDTO> choices) {
-        this.borad_id = borad_id;
+    public OnboardingListDTO(Long boardId, String question, List<ChoiceListDTO> choices) {
+        board_id = boardId;
         this.question = question;
         this.choices = choices;
     }
 
-    public Long getBorad_id() {
-        return borad_id;
+    public Long getBoard_id() {
+        return board_id;
     }
 
     public String getQuestion() {
