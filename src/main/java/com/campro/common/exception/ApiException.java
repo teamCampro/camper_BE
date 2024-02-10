@@ -1,4 +1,4 @@
-package com.campro.common.controller.exception;
+package com.campro.common.exception;
 
 public class ApiException extends RuntimeException {
 
