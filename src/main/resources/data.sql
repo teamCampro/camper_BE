@@ -21,3 +21,24 @@ VALUES ('산/숲'), ('바다'), ('계곡'), ('도심'),
 ('전기 장판'), ('레저'), ('개인화장실'), ('개인샤워실'),
 ('감성적'), ('아늑한'), ('활기찬'), ('자연적'),
 ('나홀로'), ('연인'), ('가족'), ('애견동반');
+
+
+
+-- 캠핑장 등록
+INSERT INTO campsite (owner_id, name, line_intro, intro, feature,
+induty, addr, addr1, map_x, map_y, tel, homepage, reserve_url,
+reserve_app, gnrl_site, auto_site, glamp_site,
+carav_site, oper_period, oper_date, sbrs_cl,
+posbl_fclty_cl, thema, animal_cmg, first_img_url)
+VALUES (0, 'name', 'line_intro', 'intro', 'feature',
+'induty', 'addr','군포', 10.10, 20.20, '010', 'http',
+'http:reserve', '전화+인터넷', 1, 2, 3, 4, '기간', '평일+주말', '부대시설',
+'주변시설', '테마', '가능(소형견)', 'http:~img'),
+(0, '나홀로캠핑', '한줄 소개 -> ~이런게 있습니다', '긴 글로 소개', '특징 - 사계절이 뚜렷하고',
+'카라반,캠핑장', '경기도 군포 무슨군 120','군포', 10.10, 20.20, '010111111111', 'http://www.naver.com',
+'http:reserve', '전화+인터넷', 1, 2, 3, 4, '기간', '평일+주말', '부대시설',
+'주변시설', '테마', '가능(소형견)', 'http:~img'),
+(0, '가족캠핑', '한줄 소개 -> ~이런게 있습니다', '긴 글로 소개', '특징 - 사계절이 뚜렷하고',
+'카라반,캠핑장', '경기도 군포 무슨군 120','군포', 10.10, 20.20, '010111111111', 'http://www.naver.com',
+'http:reserve', '전화+인터넷', 1, 2, 3, 4, '기간', '평일+주말', '부대시설',
+'주변시설', '테마', '불가능', 'http:~img')    ;
