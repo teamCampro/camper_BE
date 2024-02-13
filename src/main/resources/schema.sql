@@ -32,8 +32,8 @@ CREATE TABLE campsite (
     induty VARCHAR(255),
     addr VARCHAR(255),
     addr1 VARCHAR(255),
-    map_x NUMERIC(8,5),
-    map_y NUMERIC(8,5),
+    map_x NUMERIC(8, 5),
+    map_y NUMERIC(8, 5),
     tel VARCHAR(100),
     homepage VARCHAR(255),
     reserve_url VARCHAR(255),
@@ -50,7 +50,7 @@ CREATE TABLE campsite (
     animal_cmg VARCHAR(255),
     first_img_url VARCHAR(255),
     likes INTEGER,
-    star NUMERIC(2,1),
+    star NUMERIC(2, 1),
     create_at DATE,
     update_at DATE
 );
