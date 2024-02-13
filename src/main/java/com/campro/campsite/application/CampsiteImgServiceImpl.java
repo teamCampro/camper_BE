@@ -3,8 +3,8 @@ package com.campro.campsite.application;
 import com.campro.campsite.infrastructure.entity.CampsiteImgEntity;
 import com.campro.campsite.infrastructure.repository.CampsiteImgRepository;
 import com.campro.campsite.presentation.request.CampsiteImgRequest;
-import com.campro.common.controller.exception.ApiException;
-import com.campro.common.controller.exception.ErrorCode;
+import com.campro.common.exception.ApiException;
+import com.campro.common.exception.ErrorCode;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

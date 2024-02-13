@@ -12,7 +12,11 @@ public enum ResponseCode {
 
     PATCH_SUCCESS("S006","수정 성공"),
 
-    GET_ONBOARDINGLIST_SUCCESS("O001","온보딩 리스트 조회");
+    GET_ONBOARDINGLIST_SUCCESS("O001","온보딩 리스트 조회"),
+
+    S3_UPLOAD_SUCCESS("S004", "S3 이미지 업로드 성공"),
+    S3_DELETE_SUCCESS("S005", "S3 이미지 삭제 완료");
+
 
 
 
