@@ -20,6 +20,7 @@ import java.util.UUID;
 
 @Service
 public class S3UploadService {
+
     private final S3UploadRepository s3UploadRepository;
 
     public S3UploadService(S3UploadRepository s3UploadRepository) {
@@ -42,6 +43,7 @@ public class S3UploadService {
 
     }
 
+
     /**
      *
      * 파일 이름 암호화
@@ -62,7 +64,6 @@ public class S3UploadService {
     }
 
 
-    //파일 삭제
     public void deleteFile(String fileName){
         s3UploadRepository.deleteImage(fileName);
     }

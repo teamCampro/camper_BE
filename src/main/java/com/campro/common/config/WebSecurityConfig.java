@@ -48,7 +48,9 @@ public class WebSecurityConfig {
                                 AntPathRequestMatcher.antMatcher("/static/**"),
                                 AntPathRequestMatcher.antMatcher("/api/main/**"),
                                 AntPathRequestMatcher.antMatcher("/api/oauth2/**"),
-                                AntPathRequestMatcher.antMatcher("/h2-console/**"))
+                                AntPathRequestMatcher.antMatcher("/h2-console/**"),
+                                AntPathRequestMatcher.antMatcher("/swagger-ui/**"),
+                                AntPathRequestMatcher.antMatcher("/v3/api-docs/**"))
                         .permitAll()
                         .anyRequest()
                         .authenticated()
