@@ -3,7 +3,9 @@ package com.campro.member.presentation.controller;
 import com.campro.common.controller.ResponseCode;
 import com.campro.common.controller.response.ApiResponse;
 import com.campro.member.application.MemberService;
+import com.campro.member.application.request.MemberLoginRequest;
 import com.campro.member.application.request.MemberSignupRequest;
+import com.campro.member.presentation.controller.response.MemberLoginResponse;
 import com.campro.member.presentation.controller.response.MemberSignupResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,20 @@ public class MemberController {
                 ApiResponse.from(
                         ResponseCode.SIGNUP_SUCCESS.getCode(),
                         ResponseCode.SIGNUP_SUCCESS.getMessage(),
+                        response
+                )
+        );
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<MemberLoginResponse>> login(
+            @RequestBody MemberLoginRequest memberLoginRequest
+    ) {
+        MemberLoginResponse response = memberService.login(memberLoginRequest);
+        return ResponseEntity.ok().body(
+                ApiResponse.from(
+                        ResponseCode.LOGIN_SUCCESS.getCode(),
+                        ResponseCode.LOGIN_SUCCESS.getMessage(),
                         response
                 )
         );
