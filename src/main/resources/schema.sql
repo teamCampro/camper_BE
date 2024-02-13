@@ -53,22 +53,19 @@ CREATE TABLE campsite (
     star NUMERIC(2,1),
     create_at DATE,
     update_at DATE
-
 );
 
 CREATE TABLE campsite_keyword (
     id SERIAL PRIMARY KEY,
-    campsite_id INTEGER REFERENCES campsite(id),
+    campsite_id INTEGER REFERENCES campsite (id),
     keyword VARCHAR(255),
     count INTEGER
 );
 
 CREATE TABLE campsite_img (
     id SERIAL PRIMARY KEY,
-    campsite_id INTEGER REFERENCES campsite(id),
+    campsite_id INTEGER REFERENCES campsite (id),
     origin_name VARCHAR(255),
     upload_url VARCHAR(255),
     create_at DATE
 );
-
-
