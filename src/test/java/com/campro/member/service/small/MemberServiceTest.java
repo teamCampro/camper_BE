@@ -1,5 +1,7 @@
 package com.campro.member.service.small;
 
+import com.campro.auth.application.AuthTokenService;
+import com.campro.auth.application.JwtService;
 import com.campro.common.exception.ApiException;
 import com.campro.encrypt.application.service.EncryptService;
 import com.campro.member.application.MemberService;
@@ -9,6 +11,7 @@ import com.campro.member.domain.Member;
 import com.campro.member.domain.Role;
 import com.campro.member.infrastructure.MemberRepository;
 import com.campro.mock.EncryptFakeService;
+import com.campro.mock.FakeTokenService;
 import com.campro.mock.MemberFakeRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,8 +28,9 @@ public class MemberServiceTest {
     @BeforeEach
     void setUp() {
         EncryptService encryptFakeService = new EncryptFakeService();
+        AuthTokenService tokenService = new FakeTokenService();
         memberFakeRepository = new MemberFakeRepository();
-        memberService = new MemberServiceImpl(memberFakeRepository, encryptFakeService);
+        memberService = new MemberServiceImpl(memberFakeRepository, tokenService, encryptFakeService);
         memberFakeRepository.save(new Member(
                 1L,
                 "nickname",

@@ -12,4 +12,9 @@ public class EncryptFakeService implements EncryptService {
     public String unrecoverableEncryptData(String data) {
         return null;
     }
+
+    @Override
+    public boolean matchData(String rawData, String data) {
+        return true;
+    }
 }
