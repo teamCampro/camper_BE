@@ -29,4 +29,9 @@ public class EncryptServiceImpl implements EncryptService {
         Assert.notNull(data, "암호화 데이터가 존재하지 않습니다.");
         return passwordEncoder.encode(data);
     }
+
+    public boolean matchData(String rawData, String data) {
+        Assert.notNull(data, "비교할 데이터가 존재하지 않습니다.");
+        return passwordEncoder.matches(rawData, data);
+    }
 }
